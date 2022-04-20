@@ -16,10 +16,8 @@ module.exports = class I18nAPI extends API {
     getModule([ 'locale', 'theme' ]).then(module => {
       this.locale = module.locale;
       module.addChangeListener(() => {
-        if (module.locale !== this.locale) {
-          this.locale = module.locale;
-          i18n.loadPromise.then(() => this.addPowercordStrings());
-        }
+        this.locale = module.locale;
+        i18n.loadPromise.then(() => this.addPowercordStrings());
       });
       this.addPowercordStrings();
     });
